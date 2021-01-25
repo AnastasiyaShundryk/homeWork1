@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.Task1;
 import page.Task2;
+import page.Task3;
 
 public class Tests {
     private WebDriver driver;
@@ -17,7 +18,7 @@ public class Tests {
         driver = new FirefoxDriver();
     }
 
-    @Test(description = "Task 1 'I Can Win'")
+    @Test(enabled=false, description = "Task 1 'I Can Win'")
     public void Task1() {
         String textLocator= "postform-text";
         String code ="Hello from WebDriver";
@@ -30,7 +31,7 @@ public class Tests {
         task.Note(code,textLocator,postformLocator,title,submitLocator);
     }
 
-    @Test(description = "Task 2 'Bring It On'")
+    @Test(enabled=false, description = "Task 2 'Bring It On'")
     public void Task2() {
         String textLocator= "postform-text";
         String code1="git config --global user.name  \"New Sheriff in Town\"\n";
@@ -54,6 +55,15 @@ public class Tests {
         boolean text2 = driver.getPageSource().contains("git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n");
         boolean text3 = driver.getPageSource().contains("git push origin master --force");
 
+    }
+
+
+
+    @Test(description = "Task 3")
+    public void Task3() {
+        Task3 task = new Task3(driver);
+        task.openPage();
+        task.search();
     }
 
     @AfterMethod(alwaysRun = true)
