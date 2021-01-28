@@ -59,11 +59,7 @@ public class Task3 {
     public Task3 form () {
         new WebDriverWait(driver, 10).until(ExpectedConditions.
                 presenceOfAllElementsLocatedBy(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe")));
-        webElement = driver.findElement(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe"));
-        driver.switchTo().frame(webElement);
-        webElement = driver.findElement(By.xpath("//*[@id=\"myFrame\"]"));
-        driver.switchTo().frame(webElement);
-
+        getFrame(driver,webElement);
 
         new WebDriverWait(driver, 1000).until(ExpectedConditions.
                 presenceOfAllElementsLocatedBy(By.xpath(locatorIntanceType)));
@@ -114,7 +110,13 @@ public class Task3 {
         webElement.click();
         webElement=driver.findElement(By.xpath(locatorBTN));
         webElement.click();
-
         return this;
+    }
+
+    public void getFrame(WebDriver driver1, WebElement webElement1){
+        webElement1 = driver1.findElement(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe"));
+        driver1.switchTo().frame(webElement1);
+        webElement1 = driver1.findElement(By.xpath("//*[@id=\"myFrame\"]"));
+        driver1.switchTo().frame(webElement1);
     }
 }

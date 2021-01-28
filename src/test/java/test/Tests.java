@@ -1,8 +1,10 @@
 package test;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,6 +12,8 @@ import page.Task1;
 import page.Task2;
 import page.Task3;
 import page.Task4;
+
+import java.util.ArrayList;
 
 public class Tests {
     private WebDriver driver;
@@ -19,7 +23,7 @@ public class Tests {
         driver = new FirefoxDriver();
     }
 
-    @Test(enabled=false, description = "Task 1 'I Can Win'")
+    @Test(enabled=true, description = "Task 1 'I Can Win'")
     public void Task1() {
         String textLocator= "postform-text";
         String code ="Hello from WebDriver";
@@ -32,7 +36,7 @@ public class Tests {
         task.Note(code,textLocator,postformLocator,title,submitLocator);
     }
 
-    @Test(enabled=false, description = "Task 2 'Bring It On'")
+    @Test(enabled=true, description = "Task 2 'Bring It On'")
     public void Task2() {
         String textLocator= "postform-text";
         String code1="git config --global user.name  \"New Sheriff in Town\"\n";
@@ -60,7 +64,7 @@ public class Tests {
 
 
 
-    @Test(enabled=false, description = "Task 3 'Hurt Me Plenty'")
+    @Test(enabled=true, description = "Task 3 'Hurt Me Plenty'")
     public void Task3() {
         Task3 task = new Task3(driver);
         task.openPage();
@@ -79,12 +83,19 @@ public class Tests {
         task.search();
         task.form();
         Task4 task4=new Task4(driver);
-        task4.sendEmail("");
 
-
+        ((JavascriptExecutor)driver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        task4.getEmailAdress();
+        driver.switchTo().window(tabs.get(0));
+        task4.sendEmail();
+        driver.switchTo().window(tabs.get(1));
+        task4.checkEmail();
+        boolean price = driver.getPageSource().contains("8,182.65");
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(enabled=true,alwaysRun = true)
     public void browseTearnDownr(){
         driver.quit();
         driver=null;
