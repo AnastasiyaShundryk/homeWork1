@@ -59,11 +59,12 @@ public class Tests {
 
 
 
-    @Test(description = "Task 3")
-    public void Task3() {
+    @Test(description = "Task 3 'Hurt Me Plenty'")
+    public void Task3() throws InterruptedException {
         Task3 task = new Task3(driver);
         task.openPage();
         task.search();
+        task.form();
     }
 
     @AfterMethod(alwaysRun = true)
