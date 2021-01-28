@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import page.Task1;
 import page.Task2;
 import page.Task3;
+import page.Task4;
 
 public class Tests {
     private WebDriver driver;
@@ -59,12 +60,28 @@ public class Tests {
 
 
 
-    @Test(description = "Task 3 'Hurt Me Plenty'")
-    public void Task3() throws InterruptedException {
+    @Test(enabled=false, description = "Task 3 'Hurt Me Plenty'")
+    public void Task3() {
         Task3 task = new Task3(driver);
         task.openPage();
         task.search();
         task.form();
+        boolean instanceType = driver.getPageSource().contains("n1-node-96-624");
+        boolean region = driver.getPageSource().contains("Iowa");
+        boolean localSSD = driver.getPageSource().contains("24x375");
+        boolean price = driver.getPageSource().contains("8,182.65");
+    }
+
+    @Test(description = "Task 4 'Hardcore'")
+    public void Task4() throws InterruptedException {
+        Task3 task = new Task3(driver);
+        task.openPage();
+        task.search();
+        task.form();
+        Task4 task4=new Task4(driver);
+        task4.sendEmail("");
+
+
     }
 
     @AfterMethod(alwaysRun = true)
@@ -73,3 +90,4 @@ public class Tests {
         driver=null;
     }
 }
+
