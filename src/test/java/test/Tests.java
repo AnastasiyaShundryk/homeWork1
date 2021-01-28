@@ -62,8 +62,6 @@ public class Tests {
 
     }
 
-
-
     @Test(enabled=true, description = "Task 3 'Hurt Me Plenty'")
     public void Task3() {
         Task3 task = new Task3(driver);
@@ -76,7 +74,7 @@ public class Tests {
         boolean price = driver.getPageSource().contains("8,182.65");
     }
 
-    @Test(description = "Task 4 'Hardcore'")
+    @Test(enabled=true, description = "Task 4 'Hardcore'")
     public void Task4() throws InterruptedException {
         Task3 task = new Task3(driver);
         task.openPage();
