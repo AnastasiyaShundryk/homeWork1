@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -54,12 +53,15 @@ public class Tests {
         task.Note(textLocator,code1,code2,code3,pasteHighlightingLocator,searchFieldLocator,key,postformLocator,title,submitLocator);
 
         boolean text = driver.getPageSource().contains("how to gain dominance among developers");
+        System.out.println(text);
         String colorText = driver.findElement(By.className("kw2")).getCssValue("color");
         System.out.println("Text color:"+colorText);
         boolean text1 = driver.getPageSource().contains("git config --global user.name  \"New Sheriff in Town\"\n");
+        System.out.println(text1);
         boolean text2 = driver.getPageSource().contains("git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n");
+        System.out.println(text2);
         boolean text3 = driver.getPageSource().contains("git push origin master --force");
-
+        System.out.println(text3);
     }
 
     @Test(enabled=true, description = "Task 3 'Hurt Me Plenty'")
@@ -69,9 +71,13 @@ public class Tests {
         task.search();
         task.form();
         boolean instanceType = driver.getPageSource().contains("n1-node-96-624");
+        System.out.println(instanceType);
         boolean region = driver.getPageSource().contains("Iowa");
+        System.out.println(region);
         boolean localSSD = driver.getPageSource().contains("24x375");
+        System.out.println(localSSD);
         boolean price = driver.getPageSource().contains("8,182.65");
+        System.out.println(price);
     }
 
     @Test(enabled=true, description = "Task 4 'Hardcore'")
@@ -91,6 +97,7 @@ public class Tests {
         driver.switchTo().window(tabs.get(1));
         task4.checkEmail();
         boolean price = driver.getPageSource().contains("8,182.65");
+        System.out.println(price);
     }
 
     @AfterMethod(enabled=true,alwaysRun = true)
